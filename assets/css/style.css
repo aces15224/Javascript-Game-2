@@ -1,0 +1,24 @@
+*{
+    box-sizing:border-box;
+}
+body{
+    background-color: white;
+}
+
+
+.title{
+    text-align: center;
+    font-family: 'Notable', sans-serif;  
+    /* width:100%; */
+    font-size: 3em;
+    
+}
+#sideOne{
+    transform: rotate(-90deg);
+    float:left;
+}
+#sideTwo{
+    transform: rotate(90deg);
+    float:right;
+}
+
