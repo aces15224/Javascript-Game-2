@@ -5,17 +5,45 @@ body{
     background-color: white;
 }
 
+#rapid{
+    font-family: 'Turret Road', cursive;
+    position:relative;
+    text-align:center;
+    animation-name: titleSequence;
+    /* animation-delay: 2s; */
+    animation-duration: 3s;
+    
+    /* for page load animation */
+}
 
+@keyframes titleSequence{
+    /* from {left: 0%; transform: skewX(35deg);}
+    to {left: 50%; transform: skewX(0deg);} */
+
+    0%   { transform: translate(-1600%, 0);  }
+    50% {transform: skewX(35deg); }
+    80% {transform: skewX(0deg)};
+    100% { transform: translate( 0%, 0); }
+}
+    
 .title{
     text-align: center;
     font-family: 'Notable', sans-serif;  
     /* width:100%; */
     font-size: 3em;
+    animation-name: fade-in;
+    animation-duration: 2s;
     
 }
+
+@keyframes fade-in {
+    0% {opacity: 0;}
+    100% {opacity: 1;}
+ } 
 #sideOne{
     transform: rotate(-90deg);
     float:left;
+    
 }
 #sideTwo{
     transform: rotate(90deg);
