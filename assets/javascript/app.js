@@ -2,6 +2,7 @@ var correct=0;
 var incorrect=0;
 var currentQuestion=0;
 var counter=15;
+var answerCheck;
 
 var QandArray=[{
 question:"What does CSS stand for?",
@@ -94,15 +95,21 @@ answers:[".trivia", "#trivia", "trivia", "./trivia"],
 correctAnswer: "#trivia"}
 ];
 console.log(QandArray[currentQuestion].question)
-console.log(QandArray[0].answers[0])
-console.log(QandArray.question);
 
+console.log(QandArray.question);
 
 
 
 $("#startButton").on("click", function(){
     $("#startButton").remove()
     loadQuestion();
+    console.log(QandArray[currentQuestion].correctAnswer)
+})
+
+$(document).on("click", ".answerButtons", function(event){
+    alert("hell yeah!")
+    answerCheck(event)
+    
 })
 
 function gameTimer(){
@@ -114,23 +121,31 @@ function gameTimer(){
 }
 
 function loadQuestion(){
-    countDownTimer=setInterval(gameTimer, 1000);
-    $("#q-a-wrapper").html(QandArray[currentQuestion].question)
+     countDownTimer=setInterval(gameTimer, 1000);
+    $("#q-a-wrapper").html("<h1>" + QandArray[currentQuestion].question + "</h1>")
     for(var i=0; i<QandArray[currentQuestion].answers.length; i++){
         var answerButton= $("<button>")
+        answerButton.addClass("answerButtons")
+        answerButton.attr("data-button",QandArray[currentQuestion].answers[i])
         answerButton.text(QandArray[currentQuestion].answers[i]);
         $("#answerButtons").append(answerButton)
-        console.log(answerButton);
 
-
-        console.log(QandArray[currentQuestion].answers)
-        // console.log(QandArray[currentQuestion].answers)
-
-    }
-    
-    
 }
+   
 
+ answerCheck=function(event){
+    clearInterval(countDownTimer);
+  if (QandArray[currentQuestion].correctAnswer==$(event.target).attr("data-button")){
+      alert("Yee-haw!")
+  }
+  else{
+      alert("NO!")
+  }
+     
+  }
+    
+//   $(QandArray[currentQuestion].answers[i]))
+}
 
 
 
