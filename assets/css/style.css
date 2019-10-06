@@ -3,15 +3,57 @@
 }
 body{
     background-color: white;
+    overflow: hidden;
+    margin:0px;
 }
+
+#page-wrapper{
+    text-align:center;
+    background-image: url("../images/grid.jpg");
+    
+    padding-top: 10px;
+    height: 470px;
+    width:auto;
+    margin:auto;
+    max-width: 1000px;
+    
+    display:block;
+    
+    border: 5px black double;
+
+}
+#q-a-wrapper{
+    font-size: 17.5px;
+    font-family: 'Source Code Pro', monospace;
+    text-indent: center;
+    height: 100px;
+    margin: 10px 10px;
+}
+
+#countDown{
+    color:white;
+    font-size: 4em;
+    height: 65px;
+}
+
+/* #page-wrapper:after{
+    border:black solid 200px;
+    position:absolute;
+    z-index:-1;
+    content:"";
+    top:-15px;
+    visibility:hidden;
+} */
 
 #rapid{
     font-family: 'Turret Road', cursive;
+    font-style: italic;
     position:relative;
     text-align:center;
     animation-name: titleSequence;
     /* animation-delay: 2s; */
     animation-duration: 3s;
+    color:black;
     
     /* for page load animation */
 }
@@ -21,18 +63,26 @@ body{
     to {left: 50%; transform: skewX(0deg);} */
 
     0%   { transform: translate(-1600%, 0);  }
-    50% {transform: skewX(35deg); }
-    80% {transform: skewX(0deg)};
-    100% { transform: translate( 0%, 0); }
+    50% {transform: skewX(35deg);}
+    80% {transform: skewX(0deg);}
+    
+    93% { transform: translate( 0%, 0);}
+    95% { color:black;}
+    96%{ color:red;} 
+    
 }
     
-.title{
+#title{
     text-align: center;
     font-family: 'Notable', sans-serif;  
-    /* width:100%; */
-    font-size: 3em;
+    letter-spacing: .25em;
+    padding: 5px 0 5px 0;
+    
+
+    font-size: 4em;
     animation-name: fade-in;
     animation-duration: 2s;
+    
     
 }
 
@@ -40,13 +90,23 @@ body{
     0% {opacity: 0;}
     100% {opacity: 1;}
  } 
-#sideOne{
-    transform: rotate(-90deg);
-    float:left;
+
+button:not(#startButton){
+    padding-top: 10px;
+    padding-bottom:10px;
+    margin: 10px auto;
+    display:block;
+    width: 95%;
+    font-size: 15px;
+    font-weight:bold;
     
 }
-#sideTwo{
-    transform: rotate(90deg);
-    float:right;
+
+#answerButtons{
+    /* position:relative;
+    top:60px; */
+    
+    
 }
+
 
