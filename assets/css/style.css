@@ -25,15 +25,18 @@ body{
 #q-a-wrapper{
     font-size: 17.5px;
     font-family: 'Source Code Pro', monospace;
+    font-style: italic;
     text-indent: center;
+    text-shadow: 1.5px 1.5px black;
+    color:red;
     height: 100px;
     margin: 10px 10px;
 }
 
 #countDown{
     color:white;
-    font-size: 4em;
-    height: 65px;
+    font-size: 3em;
+    height: 45px;
 }
 
 /* #page-wrapper:after{
@@ -46,6 +49,8 @@ body{
 } */
 
 #rapid{
+    font-size: 2em;
+    letter-spacing: .10em;
     font-family: 'Turret Road', cursive;
     font-style: italic;
     position:relative;
@@ -99,14 +104,39 @@ button:not(#startButton){
     width: 95%;
     font-size: 15px;
     font-weight:bold;
+    border:#101010	solid 1px;
     
 }
 
-#answerButtons{
-    /* position:relative;
-    top:60px; */
-    
-    
+#tryAgain:not(button){
+    color:white;
+    background-color:red;
+    margin-top:100px;
 }
+
+#startButton{
+    background-color:black;
+    color:white;
+    font-size:4em;
+    padding: 20px;  
+    position: relative;
+    top: 75px;
+    width: 300px;
+}
+
+#startButton:hover{
+    background-color:red;
+}
+
+img{
+    padding-top: 15px;
+    padding-bottom:10px;
+}
+    
+h2{
+    text-align: none;
+}
+    
+
 
 
