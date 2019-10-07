@@ -2,10 +2,7 @@ var correct=0;
 var incorrect=0;
 var currentQuestion=0;
 var counter=15;
-var answerCheck;
-var reset;
-var gameOver;
-var speed=document.getElementById("speed")
+var audio = new Audio('./assets/audio/speed.mp3');
 
 
 
@@ -99,8 +96,8 @@ correctAnswer: "#trivia"}
 ];
 
 
-// var audio = new Audio('./assets/audio/speed.mp3');
-// audio.play();
+
+
 
 
  reset=function(){
@@ -117,12 +114,12 @@ correctAnswer: "#trivia"}
 
 $("#startButton").on("click", function(){
     $("#startButton").detach()
+    audio.play();
     loadQuestion();
  
 })
 
 $(document).on("click", ".answerButtons", function(event){
-    // alert("hell yeah!")
     answerCheck(event)
 })
 
@@ -131,7 +128,6 @@ $(document).on("click", "#tryAgain", function(){
     correct=0;
     incorrect=0;
     currentQuestion=0;
-    
     $("#answerButtons").empty();
     loadQuestion();
     
@@ -147,7 +143,7 @@ function gameTimer(){
 }
 
 function loadQuestion(){
-    // count=15;
+    
     countDownTimer=setInterval(gameTimer, 1000);
     $("#q-a-wrapper").html("<h1>" + QandArray[currentQuestion].question + "</h1>")
     for(var i=0; i<QandArray[currentQuestion].answers.length; i++){
@@ -165,14 +161,14 @@ function loadQuestion(){
   if (QandArray[currentQuestion].correctAnswer==$(event.target).attr("data-button")){
       correct++
       correctAns()
-    //   reset()
+    
      
   }
 
   else{
       incorrect++
       incorrectAns()
-    //   reset()
+
   }
 }
 
@@ -222,22 +218,15 @@ function outOfTime(){
 }
 gameOver=function(){
     $("#countDown").html("")
-    // $("#startButton").add()
     $("#q-a-wrapper").html("<h1> Answered correctly:" + correct + "</h1>")
     $("#q-a-wrapper").append("<h1> Answered incorrectly:" + incorrect + "</h1>")
-    
     $("#answerButtons").html('<img src="./assets/images/thumbs.png" />')
     $("#answerButtons").append("<button id='tryAgain'>Try Again</button>")
     $("#answerButtons").css("margin-top","100px;")
 }
 
 
-// to do:
 
-// incorrect & correct function
-// time's up function
-
-// reset time
 
 
 
