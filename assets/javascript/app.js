@@ -4,9 +4,6 @@ var currentQuestion=0;
 var counter=15;
 var audio = new Audio('./assets/audio/speed.mp3');
 
-
-
-
 var QandArray=[{
 question:"What does CSS stand for?",
 answers:["Cascading Style Sheets", "Cascading System Sheets", "Computer System Styles", "Colorful Style Sheets"],
@@ -95,33 +92,31 @@ answers:[".trivia", "#trivia", "trivia", "./trivia"],
 correctAnswer: "#trivia"}
 ];
 
+//starts each round
 
-
-
-
-
- reset=function(){
-    
+round=function(){
     $("#answerButtons").empty();
     counter=15;
     currentQuestion++
-    loadQuestion()
-    
-
-}
+    loadQuestion();
+};
 
 
+//start button functionality
 
 $("#startButton").on("click", function(){
     $("#startButton").detach()
     audio.play();
-    loadQuestion();
- 
-})
+    loadQuestion(); 
+});
+
+//click event for each answer button
 
 $(document).on("click", ".answerButtons", function(event){
     answerCheck(event)
 })
+
+//try again button functionality //resets game 
 
 $(document).on("click", "#tryAgain", function(){
     counter=15;
@@ -129,73 +124,77 @@ $(document).on("click", "#tryAgain", function(){
     incorrect=0;
     currentQuestion=0;
     $("#answerButtons").empty();
-    loadQuestion();
-    
-    
+    loadQuestion(); 
 })
+
+//countdown timer
 
 function gameTimer(){
     counter--
     $("#countDown").html(counter);
     if (counter<=0){
     outOfTime();
-    }
-}
+    };
+};
+
+//loads each question
 
 function loadQuestion(){
-    
-    countDownTimer=setInterval(gameTimer, 1000);
-    $("#q-a-wrapper").html("<h1>" + QandArray[currentQuestion].question + "</h1>")
+    countDownTimer = setInterval(gameTimer, 1000);
+    $("#q-a-wrapper").html("<h1>" + QandArray[currentQuestion].question + "</h1>");
     for(var i=0; i<QandArray[currentQuestion].answers.length; i++){
-    var answerButton= $("<button>")
-    answerButton.addClass("answerButtons")
-    answerButton.attr("data-button",QandArray[currentQuestion].answers[i])
-    answerButton.text(QandArray[currentQuestion].answers[i]);
-    $("#answerButtons").append(answerButton)}
+        var answerButton= $("<button>");
+        answerButton.addClass("answerButtons");
+        answerButton.attr("data-button",QandArray[currentQuestion].answers[i]);
+        answerButton.text(QandArray[currentQuestion].answers[i]);
+        $("#answerButtons").append(answerButton)
+    };
+};
    
-}
-   
+//function for checking answer
 
- answerCheck=function(event){
+answerCheck=function(event){
     clearInterval(countDownTimer);
-  if (QandArray[currentQuestion].correctAnswer==$(event.target).attr("data-button")){
-      correct++
-      correctAns()
-    
-     
-  }
+    if (QandArray[currentQuestion].correctAnswer==$(event.target).attr("data-button")){
+        correct++
+        correctAns() 
+    }
 
   else{
       incorrect++
       incorrectAns()
-
   }
-}
+};
 
-correctAns=function(){
+//function for a correct answer
+
+correctAns = function(){
     $("#answerButtons").empty();
     $("#q-a-wrapper").html("<h1> You're right! </h1>");
-    $("#answerButtons").html('<img src="./assets/images/thumbUp.png" />')
+    $("#answerButtons").html('<img src="./assets/images/thumbUp.png" />');
     if(currentQuestion==QandArray.length-1){
         setTimeout(gameOver, 1* 3000);}
     else{
-        setTimeout(reset, 3000)
+        setTimeout(round, 3000)
     }
-    
-}
+};
 
-incorrectAns=function(){
+//function for an incorrect answer
+
+incorrectAns = function(){
     $("#answerButtons").empty();
     $("#q-a-wrapper").html("<h1> You're wrong! </h1>");
     $("#q-a-wrapper").append('<h3> The correct answer was: ' + QandArray[currentQuestion].correctAnswer +'</h3>');
-    $("#answerButtons").html('<img src="./assets/images/thumbDown.png" />')
+    $("#answerButtons").html('<img src="./assets/images/thumbDown.png" />');
     if(currentQuestion==QandArray.length-1){
-        setTimeout(gameOver, 1* 3000);}
-    else{
-        setTimeout(reset, 3000)
+        setTimeout(gameOver, 1* 3000);
     }
-    
-}
+    else{
+        setTimeout(round, 3000)
+    ;} 
+};
+
+//function for when the player runs out of time
 
 function outOfTime(){
     clearInterval(countDownTimer);
@@ -206,24 +205,25 @@ function outOfTime(){
     incorrect++
     
     if(currentQuestion==QandArray.length){
-    setTimeout(gameOver, 1* 3000); 
-        
+        setTimeout(gameOver, 1* 3000);     
     }
     else{
-    counter=15;      
-    setTimeout(function(){
-    loadQuestion()}, 3000);
-    
-}
-}
-gameOver=function(){
-    $("#countDown").html("")
-    $("#q-a-wrapper").html("<h1> Answered correctly:" + correct + "</h1>")
-    $("#q-a-wrapper").append("<h1> Answered incorrectly:" + incorrect + "</h1>")
-    $("#answerButtons").html('<img src="./assets/images/thumbs.png" />')
-    $("#answerButtons").append("<button id='tryAgain'>Try Again</button>")
-    $("#answerButtons").css("margin-top","100px;")
-}
+        counter=15;      
+        setTimeout(function(){
+        loadQuestion()}, 3000);
+        }
+};
+
+//function for when the game is over
+
+gameOver = function(){
+    $("#countDown").html("");
+    $("#q-a-wrapper").html("<h1> Answered correctly:" + correct + "</h1>");
+    $("#q-a-wrapper").append("<h1> Answered incorrectly:" + incorrect + "</h1>");
+    $("#answerButtons").html('<img src="./assets/images/thumbs.png" />');
+    $("#answerButtons").append("<button id='tryAgain'>Try Again</button>");
+    $("#answerButtons").css("margin-top","100px;");
+};
 
 
 
